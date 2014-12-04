@@ -19,6 +19,10 @@ class RPC_Base(object):
         self.client = Client(self)
 
 if __name__ == '__main__':
-    rpc_base = RPC_Base(1,2)
+    class helper(object):
+        def send_data(self, msg):
+            print msgpack.unpackb(msg)
+    poller = helper()
+    rpc_base = RPC_Base(poller, "test_rpc")
     rpc_base.client.call(1,2,3)
 
